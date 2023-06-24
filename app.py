@@ -17,6 +17,7 @@ class Article(db.Model):
     def __repr__(self):
         return '<Article %r>' % self.id
 
+
 @app.route('/')
 @app.route('/home')
 def index():
@@ -26,6 +27,11 @@ def index():
 @app.route('/about')
 def about():
     return render_template('about.html')
+
+
+@app.route('/create-article')
+def create_article():
+    return render_template('create_article.html')
 
 
 @app.route('/user/<string:name>/<int:id>')
