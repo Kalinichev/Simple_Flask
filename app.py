@@ -41,6 +41,19 @@ def post_detail(id):
     return render_template('post_detail.html', article=article)
 
 
+@app.route('/posts/<int:id>/delete')
+def post_delete(id):
+    article = Article.query.get_or_404(id)
+
+    try:
+        db.session.delete(article)
+        db.session.commit()
+        return redirect('/posts')
+    except:
+        return 'При удалении статьи произошла ошибка'
+    return render_template('post_detail.html', article=article)
+
+
 @app.route('/create-article', methods=['POST', 'GET'])
 def create_article():
     if request.method == 'POST':
